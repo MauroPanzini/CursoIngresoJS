@@ -17,7 +17,7 @@ function CalcularPrecio ()
     if(cantLamparas >= 6){
         precio = precio - precio*50/100;
     }
-    if(cantLamparas >= 5){
+    if(cantLamparas == 5){
         if(Marca.value == "ArgentinaLuz"){
             precio = precio - precio*40/100;
         }
