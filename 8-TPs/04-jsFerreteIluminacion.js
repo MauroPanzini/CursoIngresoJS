@@ -13,10 +13,26 @@ function CalcularPrecio ()
     var lamparas = 35;
     var cantLamparas = parseInt(txtIdCantidad.value);
     var precio = lamparas*cantLamparas;
-    
+
     if(cantLamparas >= 6){
-        precio = precio *50/100;
+        precio = precio - precio*50/100;
+    }
+    if(cantLamparas >= 5){
+        if(Marca.value == "ArgentinaLuz"){
+            precio = precio - precio*40/100;
+        }
+        else {
+            precio = precio - precio*30/100;
+        }
+    }
+    if(cantLamparas == 4){
+        if(Marca.value == "ArgentinaLuz" || Marca.value == "FelipeLamparas"){
+            precio = precio - precio*25/100;
+        }
+        else{
+            precio = precio - precio*20/100;
+        }
     }
     
     txtIdprecioDescuento.value = precio;
-}
+}   
