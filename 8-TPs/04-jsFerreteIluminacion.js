@@ -15,24 +15,44 @@ function CalcularPrecio ()
     var precio = lamparas*cantLamparas;
 
     if(cantLamparas >= 6){
-        precio = precio - precio*50/100;
+        precio -= Desc(precio, 50);
     }
     if(cantLamparas == 5){
         if(Marca.value == "ArgentinaLuz"){
-            precio = precio - precio*40/100;
+            precio -= Desc(precio, 40);
         }
         else {
-            precio = precio - precio*30/100;
+            pprecio -= Desc(precio, 30);
         }
     }
     if(cantLamparas == 4){
         if(Marca.value == "ArgentinaLuz" || Marca.value == "FelipeLamparas"){
-            precio = precio - precio*25/100;
+            precio -= Desc(precio, 25);
         }
-        else{
-            precio = precio - precio*20/100;
+        else {
+            precio -= Desc(precio, 20);
         }
+    }
+    if(cantLamparas == 3){
+        if(Marca.value == "ArgentinaLuz"){
+            precio -= Desc(precio, 15);
+        }
+        else if(Marca.value== "FelipeLamparas"){
+            precio -= Desc(precio, 10);
+        }
+        else {
+            precio -= Desc(precio, 5);
+        }
+    }
+    if(precio>120){
+        alert("IIBB Usted pago " + Desc(precio, 10));
+        precio += Desc(precio, 10);
     }
     
     txtIdprecioDescuento.value = precio;
 }   
+
+function Desc(precio, porcentaje)
+{
+    return precio*porcentaje/100;
+}
