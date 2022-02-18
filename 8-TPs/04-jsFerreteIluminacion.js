@@ -13,36 +13,46 @@ function CalcularPrecio ()
     var lamparas = 35;
     var cantLamparas = parseInt(txtIdCantidad.value);
     var precio = lamparas*cantLamparas;
+    var marca = Marca.value;
 
     if(cantLamparas > 5){
         precio -= Desc(precio, 50);
     }
-    else if(cantLamparas == 5){
-        if(Marca.value == "ArgentinaLuz"){
-            precio -= Desc(precio, 40);
-        }
-        else {
-            pprecio -= Desc(precio, 30);
-        }
-    }
-    else if(cantLamparas == 4){
-        if(Marca.value == "ArgentinaLuz" || Marca.value == "FelipeLamparas"){
-            precio -= Desc(precio, 25);
-        }
-        else {
-            precio -= Desc(precio, 20);
-        }
-    }
-    else if(cantLamparas == 3){
-        if(Marca.value == "ArgentinaLuz"){
-            precio -= Desc(precio, 15);
-        }
-        else if(Marca.value== "FelipeLamparas"){
-            precio -= Desc(precio, 10);
-        }
-        else {
-            precio -= Desc(precio, 5);
-        }
+    switch(cantLamparas){
+        case 5:
+            switch(marca){
+                case "ArgentinaLuz":
+                    precio -= Desc(precio, 40);
+                    break
+                default:
+                    precio -= Desc(precio, 30);
+                    break;
+            }
+            break;
+        case 4:
+            switch(marca){
+                case "FelipeLamparas":
+                case "ArgentinaLuz":    
+                    precio -= Desc(precio, 25);
+                    break;
+                default:
+                    precio -= Desc(precio, 20);
+                    break;
+            }
+            break;
+        case 3:
+            switch(marca){
+                case "ArgentinaLuz":
+                    precio -= Desc(precio, 15);
+                    break;
+                case "FelipeLamparas":
+                    precio -= Desc(precio, 10);
+                    break;
+                default:
+                    precio -= Desc(precio, 5);
+                    break;    
+            }   
+            break;
     }
     if(precio>120){
         alert("IIBB Usted pago " + Desc(precio, 10));
