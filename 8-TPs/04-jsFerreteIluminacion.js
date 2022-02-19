@@ -14,11 +14,11 @@ function CalcularPrecio ()
     var cantLamparas = parseInt(txtIdCantidad.value);
     var precio = lamparas*cantLamparas;
     var marca = Marca.value;
-
-    if(cantLamparas > 5){
-        precio -= Desc(precio, 50);
-    }
+    
     switch(cantLamparas){
+        case 1:
+        case 2:
+            break;
         case 5:
             switch(marca){
                 case "ArgentinaLuz":
@@ -52,6 +52,9 @@ function CalcularPrecio ()
                     precio -= Desc(precio, 5);
                     break;    
             }   
+            break;
+        default:
+            precio -= Desc(precio, 50);
             break;
     }
     if(precio>120){
